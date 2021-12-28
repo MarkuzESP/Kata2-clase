@@ -11,19 +11,12 @@ public class Kata2 {
     public static void main(String[] args) {
         int elementos[] = new int []{1,4,0,4,13,2,29,7,29,5,10,8,29,14,15}; 
         Map <Integer, Integer> histograma = new HashMap<>();
-        // Aunque existen varias formas de leer estos elementos para el mapa...
-        // ... en este caso se utiliza la siguiente estructura for
-        for (int i = 0; i < elementos.length; i++){
-            int valor = elementos[i];
-            // Se recoge cada elemento para introducirlo en el histograma.
-             if (histograma.get(valor) == null){
-                // Se añade un elemento al histograma si NO está registrado.
-                histograma.put(valor, 1);
-            } else {
-                // Para un elemento ya registrado, sumar una aparición
-                histograma.put(valor, histograma.get(valor)+1);
-            }
-        }  
+        // Para este enunciado se utiliza una estructura foreach
+        for (int i : elementos){
+            // Operador ternario. Si la clave no está, la anota
+            // Si la clave está registrada, incrementa su valor.
+            histograma.put(i, histograma.containsKey(i) ? histograma.get(i)+1: 1);
+        }
         
         for (Integer clave : histograma.keySet()){
             System.out.println(clave + "==>" + histograma.get(clave));
